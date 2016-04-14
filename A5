@@ -1,4 +1,7 @@
-﻿//Libraries
+/*Programmer VASILEIOU PAVLOS 8783
+______ALL RIGHTS RESERVED _________*/
+
+//Libraries
 #include <stdio.h>
 //Global Variables
 float a, b, c;
