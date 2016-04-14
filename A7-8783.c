@@ -78,11 +78,11 @@ void routine(){
 	char choice;
 	printf("Enter a character(!to break): ");
 	scanf("%c", &choice);
-	do {
+	while (choice != 33) {
 		if (choice >= 65 && choice <= 90){
 			to_lower(&choice);
 		}
 		letter[choice - 97]++;
 		scanf("%c", &choice);
-	} while (choice != 33);
+	} 
 }
