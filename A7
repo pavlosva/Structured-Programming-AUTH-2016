@@ -3,10 +3,10 @@ ______ALL RIGHTS RESERVED _________*/
 
 //Libraries
 #include <stdio.h>
-//No need if you don't use Visual Studio
-#ifdef _MSC_VER
+#include <conio.h>
+
 #define _CRT_SECURE_NO_WARNINGS
-#endif
+#define MAX 999999
 
 //Global Variables
 char letter[26] = { 0 };
@@ -64,7 +64,7 @@ int max(){
 }
 
 int min(){
-	int min_value = letter[0];
+	int min_value = MAX;
 	int i;
 	for (i = 0; i < 26; ++i){
 		if ((letter[i] < min_value)&&letter[i]!=0){
@@ -86,12 +86,12 @@ void routine(){
 	printf("Enter a character(!to break): ");
 	scanf("%c", &choice);
 	while (choice != 33) {
-	    if ((choice >= 65 && choice <= 90)||(choice >= 97 && choice <= 122)){ //Ascii Table
+	    if ((choice >= 65 && choice <= 90)||(choice >= 97 && choice <= 122)){
 		if (choice >= 65 && choice <= 90){
 			to_lower(&choice);
 		}
 		letter[choice - 97]++;
-	    }
+    }
 		scanf("%c", &choice);
 	}
 }
