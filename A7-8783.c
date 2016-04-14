@@ -1,8 +1,9 @@
 //Libraries
 #include <stdio.h>
-#include <conio.h>
-
+//No need if you don't use Visual Studio
+#ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 
 //Global Variables
 char letter[26] = { 0 };
@@ -82,7 +83,7 @@ void routine(){
 	printf("Enter a character(!to break): ");
 	scanf("%c", &choice);
 	while (choice != 33) {
-	    if ((choice >= 65 && choice <= 90)||(choice >= 97 && choice <= 122)){
+	    if ((choice >= 65 && choice <= 90)||(choice >= 97 && choice <= 122)){ //Ascii Table
 		if (choice >= 65 && choice <= 90){
 			to_lower(&choice);
 		}
