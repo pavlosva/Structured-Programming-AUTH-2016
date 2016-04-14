@@ -12,15 +12,15 @@
 typedef short int dice;
 
 //Fuction Definition
-//Πραγματοποιεί τους τυχαίους αριθμούς
+//ΓΓ±Γ΅Γ£Γ¬Γ΅Γ΄Γ―Γ°Γ―Γ©Γ¥Γ Γ΄Γ―ΓµΓ² Γ΄ΓµΓ·Γ΅ΓΓ―ΓµΓ² Γ΅Γ±Γ©Γ¨Γ¬Γ―Γ½Γ²
 dice dice_roll(){
 	return (rand() % 6) + 1;
 }
 
-//"Ρίχνει" τα ζάρια, και μετράει την συχνότητα εμφάνισης
+//"Γ‘ΓΓ·Γ­Γ¥Γ©" Γ΄Γ΅ Γ¦ΓΓ±Γ©Γ΅, ΓªΓ΅Γ© Γ¬Γ¥Γ΄Γ±ΓΓ¥Γ© Γ΄Γ§Γ­ Γ³ΓµΓ·Γ­ΓΌΓ΄Γ§Γ΄Γ΅ Γ¥Γ¬Γ¶ΓΓ­Γ©Γ³Γ§Γ²
 void routine(){
 	dice t;
-	int freq[6] = { 0 }; // Αρχικοποίηση Πίνακα 6 θέσεων με την τιμή 0
+	int freq[6] = { 0 }; // ΓΓ±Γ·Γ©ΓªΓ―Γ°Γ―ΓΓ§Γ³Γ§ ΓΓΓ­Γ΅ΓªΓ΅ 6 Γ¨ΓΓ³Γ¥ΓΉΓ­ Γ¬Γ¥ Γ΄Γ§Γ­ Γ΄Γ©Γ¬Γ 0
 	for (int i = 0; i < MIL; ++i){
 		t = dice_roll();
 		freq[t - 1]++;
@@ -33,7 +33,7 @@ void routine(){
 	}
 }
 
-//Χτίζει απλά το περιβάλλον input/output
+//Γ—Γ΄ΓΓ¦Γ¥Γ© Γ΅Γ°Γ«Γ Γ΄Γ― Γ°Γ¥Γ±Γ©ΓΆΓΓ«Γ«Γ―Γ­ input/output
 void enviroment(){
 	printf("******************************\n");
 	printf("\tHello Welcome\nDo you want to roll the Dice?\n");
@@ -57,7 +57,7 @@ void enviroment(){
 //Main
 int main(void){
 	srand((unsigned int)time(NULL));
-	/*Η συνάρτηση srand δέχεται πρακτικά εναν unsigned int σαν όρισμα ενώ η time() επιστρέφει αριθμό τύπου time_t. 
-	Γι'αυτο και η μετατροπή (Possible DATA LOSS) (βλ. TYPECASTING)*/
+	/*Γ‡ Γ³ΓµΓ­ΓΓ±Γ΄Γ§Γ³Γ§ srand Γ¤ΓΓ·Γ¥Γ΄Γ΅Γ© Γ°Γ±Γ΅ΓªΓ΄Γ©ΓªΓ Γ¥Γ­Γ΅Γ­ unsigned int Γ³Γ΅Γ­ ΓΌΓ±Γ©Γ³Γ¬Γ΅ Γ¥Γ­ΓΎ Γ§ time() Γ¥Γ°Γ©Γ³Γ΄Γ±ΓΓ¶Γ¥Γ© Γ΅Γ±Γ©Γ¨Γ¬ΓΌ Γ΄Γ½Γ°Γ―Γµ time_t. 
+	ΓƒΓ©'Γ΅ΓµΓ΄Γ― ΓªΓ΅Γ© Γ§ Γ¬Γ¥Γ΄Γ΅Γ΄Γ±Γ―Γ°Γ (Possible DATA LOSS) (ΓΆΓ«. TYPECASTING)*/
 	enviroment();
 }
