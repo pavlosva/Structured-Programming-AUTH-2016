@@ -1,0 +1,39 @@
+﻿//Libraries
+#include <stdio.h>
+//Global Variables
+float a, b, c;
+
+//Function Declaration
+double cube(float);
+double product(float, float,float);
+double add(double, double);
+void input();
+
+//Main
+int main(void) {
+	input();
+	printf("f(x,y,z)=%lf\n", add(cube(a),product(a,b,c)));
+}
+
+//Function Definition
+double cube(float x){
+	return x*x*x;
+}
+
+double product(float x, float y, float z){
+	return (x*y*z);
+}
+
+double add(double x, double y){
+	return (x + y);
+}
+
+void input(){
+	printf("The Formula is f(x,y,z)=x^3+x*y*z\n");
+	printf("Enter x=");
+	scanf_s("%f", &a);
+	printf("Enter y=");
+	scanf_s("%f", &b);
+	printf("Enter z=");
+	scanf_s("%f",&c);
+}
