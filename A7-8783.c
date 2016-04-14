@@ -87,7 +87,7 @@ void routine(){
 			to_lower(&choice);
 		}
 		letter[choice - 97]++;
-    }
+	    }
 		scanf("%c", &choice);
 	}
 }
