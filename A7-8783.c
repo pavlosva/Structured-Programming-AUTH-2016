@@ -28,7 +28,8 @@ int main(){
 void graphCreator(){
 	printf("\n");
 	printf("________________________RESULTS_________________________\n");
-	for (int i = 0; i < 26; ++i){
+	int i;
+	for (i = 0; i < 26; ++i){
 		if (letter[i] != 0){
 			printf("\t%c:", i + 97);
 			int j = 1;
@@ -39,7 +40,7 @@ void graphCreator(){
 			printf("\n");
 		}
 	}
-	
+
 }
 
 void to_lower(char* a){
@@ -48,7 +49,8 @@ void to_lower(char* a){
 
 int max(){
 	int max_value = letter[0];
-	for (int i = 0; i < 26; ++i){
+	int i;
+	for (i = 0; i < 26; ++i){
 		if (letter[i] > max_value){
 			max_value = letter[i];
 			flag_max = i;
@@ -59,7 +61,8 @@ int max(){
 
 int min(){
 	int min_value = letter[0];
-	for (int i = 0; i < 26; ++i){
+	int i;
+	for (i = 0; i < 26; ++i){
 		if ((letter[i] < min_value)&&letter[i]!=0){
 			min_value = letter[i];
 			flag_min = i;
@@ -74,15 +77,17 @@ void top_bottom(int a,int b){
 	printf("_________________________________________________________\n");
 }
 
-void routine(){	
+void routine(){
 	char choice;
 	printf("Enter a character(!to break): ");
 	scanf("%c", &choice);
 	while (choice != 33) {
+	    if ((choice >= 65 && choice <= 90)||(choice >= 97 && choice <= 122)){
 		if (choice >= 65 && choice <= 90){
 			to_lower(&choice);
 		}
 		letter[choice - 97]++;
+    }
 		scanf("%c", &choice);
-	} 
+	}
 }
