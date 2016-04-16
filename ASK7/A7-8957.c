@@ -52,7 +52,7 @@ int main() {
         ch = getchar();
         ch = tolower(ch);
         c = chartoint(ch);
-        if(c > 25)
+        if(c > 25 || c < 0)
             continue;
         freq[c]++;
         //printf("%d\n",c);
