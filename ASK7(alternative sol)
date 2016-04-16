@@ -1,0 +1,100 @@
+/*programmer Stefanos Tsoukias 
+_______fuck copyrights______*/ 
+//Mια έκδοση της άσκησης πιο "κοντά" σε αυτά που γνωρίζαμε από τον προγραμματισμό της Γ' λυκείου.
+
+
+#include <stdio.h>
+
+
+int main() {
+	char letter;
+	int table[26]={0};
+	int i,j,v_min,v_max,f_min,f_max;
+
+	
+
+	do {
+		printf("Give me a letter. If you want to stop give me (!)\n");
+		scanf (" %c",&letter);
+	  //Μετατροπή κεφαλαίου σε μικρού.
+		if (letter>= 'A' || letter<= 'Z'){
+			letter=tolower(letter);
+
+		}
+		
+        /*Το πρόγραμμα μας θέλούμε να κάνει καταμέτρηση μόνο για τα γράμματα απο a εως z για
+        και να ανεβάζει την τιμή της αντίστοιχης θέσης στον πίνακα. Το letter-97 προκύπτει
+        γιατί η μεταβλητη letter αν και δηλώνεται ως char στην ουσία είναι ένας int με τίμη
+        την τίμη ASCII του αντιστοιχου γράμματος.Επίσης a-z αντιστοιχει στους αριθμους 97-122*/
+ 
+		if(letter>='a'|| letter<='z'){
+			table[letter-97]++;
+
+		}
+		
+		
+	}
+	while (letter!='!');
+//Δημιουργία ραβδογράμματος.
+
+		for (i=0;i<26;++i){
+			
+			if (table[i]!=0){
+				printf("%c*",97+i);
+				for (j=1;j<table[i];j++){
+					printf("*");
+				}
+				printf("\n");
+			}
+		
+
+		}
+//Εύρεση μεγίστου και ελαχίστου.
+		v_min=123;
+		v_max=0;
+		for (i=0;i<26;++i){
+			if (table[i]<v_min){
+				if (table[i]!=0){    //Για να αποφύγουμε τους χαρακτηρες που δεν πληκτρολογήθηκαν
+					v_min=table[i];
+					f_min=97+i;
+				}
+			}
+			if (table[i]>v_max){
+				v_max=table[i];
+				f_max=(97+i);
+			}
+
+		}
+	//Εμφάνιση μεγιστης και ελαχιστης συχνότητας.
+	if(v_max!=v_min){
+		if (v_max==1){
+			printf("\nΜέγιστο:%c; %d φoρά",f_max,v_max);
+		}
+		else{
+			printf("\nΜέγιστο:%c; %d φoρές",f_max,v_max);
+		}
+	
+
+		if (v_min==1){
+
+			printf("\nΕλάχιστο:%c; %d φορά\n",f_min,v_min);
+		}
+		else{
+			printf("\nΕλάχιστο:%c; %d φορές\n",f_min,v_min);
+		}
+	}
+	else {
+		if(v_max=1){
+			printf("\nTo %c είναι και μέγιστο και ελάχιστο και εμφανίστηκε 1 φορά\n",f_max);
+		}
+		else {
+		printf("\nΤο %c είναι και μέγιστο και ελάχιστο και εμφανίστηκε %d φορές\n",f_max,v_max);
+		}
+	}
+	
+
+	
+
+	
+	return 0;
+}
