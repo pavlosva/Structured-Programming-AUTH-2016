@@ -1,51 +1,71 @@
+/*
+============================================================================
+Name        : A8-8783.c
+Author      : Paul Vasileiou
+Version     : 1.0.0.0
+Subject	    : Structured Programming (2nd Semester)
+============================================================================
+*/
+
+//Libraries
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+
+//Constants
 #define SIZE 100
-#define RAND_MAX 379
+#define RAND_TOP 379
+//TypeDefinition
+typedef struct complex_t complex; //Απλά για να μην γράφω κάθε φορά struct complex_t ---> γραφω απλά complex!
 
-typedef struct complex_t complex;
-
-struct complex_t{
+struct complex_t{ //Φτιάχνω την Δομή complex (Μιγαδικός) που εμπεριέχει το Πραγματικό και το Φανταστικό Μέρος!
 	float Real,
-		  Imaginary;
+	      Imaginary;
 };
- 
-complex add(complex z, complex u){
+
+//Function-Structure Declaration
+complex add(complex, complex);
+complex sub(complex, complex);
+float rand_float();
+complex load_complex_numbers();
+
+//Main Routine
+int main(){
+	srand((unsigned int)time(NULL)); //Έχουμε πει τι κάνει. . .
+	complex numbers[SIZE], add_results[SIZE/2], sub_results[SIZE/2]; //Πίνακας number: περιέχει τους τυχαιους μιγαδικούς, add_results: περιέχει τα αποτελέσματα της πρόσθεσης του 1ου με τον 2ο μιγαδικό κ.ο.κ, sub_results: περιέχει τα αποτελέσματα της αφαίρεσης του 1ου με τον 2ο μιγαδικό κ.ο.κ !
+	for (int i = 0; i < SIZE; i++){
+		numbers[i] = load_complex_numbers();
+		printf("%d: %.1f + %.1fi \n", i + 1, numbers[i].Real, numbers[i].Imaginary);
+		if (i % 2) {
+			add_results[i / 2] = add(numbers[i - 1], numbers[i]);
+			sub_results[i / 2] = sub(numbers[i - 1], numbers[i]);
+		}
+	}
+	return 0;
+}
+
+//Function Definition
+complex add(complex z, complex u){ //Καθαρά Πράξεις!
 	complex w;
 	w.Real = z.Real + u.Real;
 	w.Imaginary = z.Imaginary + u.Imaginary;
 	return w;
 }
 
-complex sub(complex z, complex u){
+complex sub(complex z, complex u){ //Καθαρά Πράξεις!
 	complex w;
 	w.Real = z.Real - u.Real;
 	w.Imaginary = z.Imaginary - u.Imaginary;
 	return w;
 }
 
-float rand_float(){
-	return ((float)rand() / (float)(RAND_MAX)) * 0.347;
+float rand_float(){ //Συνάρτηση παραγωγής τυχαίων δεκαδικών!
+	return ((float)rand() / (float)(RAND_TOP));
 }
 
-complex load_complex_numbers(){
+complex load_complex_numbers(){ //Φορτώνει απλά τους τυχαίους αριθμούς (Πραγματικούς/Φανταστικούς) και δομεί τον Μιγαδικό!
 	complex z;
 	z.Real = rand_float();
 	z.Imaginary = rand_float();
 	return z;
-}
-
-int main(){
-	srand((unsigned int)time(NULL));
-	complex BASE[SIZE], ADD[SIZE/2], SUB[SIZE/2];
-	for (int i = 0; i < SIZE; i++){
-		BASE[i] = load_complex_numbers();
-		printf("%d: %.1f + %.1fi \n", i+1, BASE[i].Real, BASE[i].Imaginary);
-	}
-	for (int i = 0; i < SIZE; i+=2){
-		ADD[i] = add(BASE[i], BASE[i + 1]);
-		SUB[i] = sub(BASE[i], BASE[i + 1]);
-	}
-	return 0;
 }
