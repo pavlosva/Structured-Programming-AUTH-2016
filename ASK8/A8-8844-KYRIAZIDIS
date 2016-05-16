@@ -1,0 +1,59 @@
+/*
+ ============================================================================
+ Name        : A8-8844.c
+ Author      : George Kyriazidis
+ Version     : 1.0.0.0
+ Copyright   : KGK Copyright 2016
+ Description : Complex Numbers
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+struct complex {
+	float x;
+	float y;
+};
+typedef struct complex complex;
+
+complex addition(complex number1, complex number2) {
+	complex result;
+	result.x = number1.x + number2.x;
+	result.y = number1.y + number2.y;
+	return result;
+}
+
+complex difference(complex number1, complex number2) {	
+	complex result;
+	result.x = number1.x - number2.x;
+	result.y = number1.y - number2.y;
+	return (result);
+}
+
+complex random_complex() {
+	complex result;
+	result.x = rand();
+	result.y = rand();
+	return result;
+}
+
+int main(void) {
+	complex numbers[100];
+	complex addition_results[50];
+	complex difference_results[50];
+
+	time_t t;
+	srand(time(&t));
+
+	int i;
+	for (i = 0; i < 100; i++) {
+		numbers[i] = random_complex();
+		if (i % 2) {
+			addition_results[i / 2] = addition(numbers[i - 1], numbers[i]);
+			difference_results[i / 2] = difference(numbers[i - 1], numbers[i]);	
+		}
+	}
+
+}
