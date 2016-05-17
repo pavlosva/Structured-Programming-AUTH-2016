@@ -1,3 +1,5 @@
+//Kostas Mpouzios, mine version. For questions pm in my facebook account.
+//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
