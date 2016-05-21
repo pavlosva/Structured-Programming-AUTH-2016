@@ -1,8 +1,18 @@
+/*
+============================================================================
+Name        : A8-8783.c
+Author      : Paul Vasileiou
+Version     : 1.0.0.0
+Subject	    : Structured Programming (2nd Semester)
+============================================================================
+*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "Account.h"
 
+#define abs(x) ((x>0)?(x):(-x))
+#define FLOAT_ERR 1e-9
 #define FILENAME "BANK_RECORDS.txt"
 int id_count = 0;
 typedef struct account_t account;
@@ -11,9 +21,11 @@ void environment();
 void CreateNewAccount();
 void ShowAllAccounts();
 void ShowZeroAccounts();
+void ClearDatabase();
 int prompt();
 
 int main(){
+    ClearDatabase();
 	environment();
 	int option = prompt();
 	while (option >= 1 && option < 4){
@@ -55,7 +67,7 @@ int prompt(){
 }
 
 void CreateNewAccount(){
-	system("cls");
+	system("clear");
 	FILE *file;
 	file = fopen(FILENAME, "a");
 	if (file == NULL)
@@ -74,12 +86,12 @@ void CreateNewAccount(){
 	printf("Enter the Balance(USE WITH CAUTION): ");
 	scanf("%f", &new.balance);
 
-	fprintf(file, "%d %s %.2f \n", new.id, new.name, new.balance);
+	fprintf(file, "%d\t%s\t%.2f\n", new.id, new.name, new.balance);
 	fclose(file);
 }
 
 void ShowAllAccounts(){
-	system("cls");
+	system("clear");
 	FILE *file;
 	file = fopen(FILENAME, "r");
 	if (file == NULL)
@@ -90,25 +102,50 @@ void ShowAllAccounts(){
 
 	printf("Accounts: \n");
 
-	char SingleLine[105];
+	char SingleLine[155];
+	fgets(SingleLine, 155, file);
 	while (!feof(file)){
-		fgets(SingleLine, 105, file);
 		puts(SingleLine);
+		fgets(SingleLine, 155, file);
 	}
-	
 	fclose(file);
 
 }
 
 void ShowZeroAccounts(){
-	system("cls");
-	FILE *file;
+	system("clear");
+	FILE* file;
 	file = fopen(FILENAME, "r");
 	if (file == NULL)
 	{
 		printf("Error opening the file!\n");
 		exit(1);
 	}
-
+	
+	
+	printf("Accounts with Zero Balance: \n");
+	char* token[3];
+	char SingleLine[155];
+	fgets(SingleLine, 155, file);
+    while (!feof(file)){
+        char *ptr = strtok(SingleLine, " \t");
+        int i = 0;
+        while (ptr != NULL){
+            token[i] = ptr;
+            ptr = strtok(NULL, "\t");
+            i++;
+        }
+		float Balance = atof(token[2]);
+		if (abs(Balance) < FLOAT_ERR){
+		    printf("%s: %s\n",token[0],token[1]);
+		}
+		fgets(SingleLine, 155, file);
+	} 
+    
 	fclose(file);
+}
+
+void ClearDatabase(){
+    FILE* file = fopen(FILENAME,"w");
+    fclose(file);
 }
