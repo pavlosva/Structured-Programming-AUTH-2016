@@ -25,15 +25,15 @@ void ClearDatabase();
 int prompt();
 
 int main(){
-    ClearDatabase();
+	ClearDatabase();
 	environment();
 	int option = prompt();
 	while (option >= 1 && option < 4){
 		switch (option) {
-		case 1: 
+		case 1:
 			CreateNewAccount();
 			break;
-		case 2: 
+		case 2:
 			ShowAllAccounts();
 			break;
 		case 3:
@@ -67,7 +67,7 @@ int prompt(){
 }
 
 void CreateNewAccount(){
-	system("clear");
+	system("cls");
 	FILE *file;
 	file = fopen(FILENAME, "a");
 	if (file == NULL)
@@ -91,7 +91,7 @@ void CreateNewAccount(){
 }
 
 void ShowAllAccounts(){
-	system("clear");
+	system("cls");
 	FILE *file;
 	file = fopen(FILENAME, "r");
 	if (file == NULL)
@@ -113,7 +113,7 @@ void ShowAllAccounts(){
 }
 
 void ShowZeroAccounts(){
-	system("clear");
+	system("cls");
 	FILE* file;
 	file = fopen(FILENAME, "r");
 	if (file == NULL)
@@ -121,31 +121,31 @@ void ShowZeroAccounts(){
 		printf("Error opening the file!\n");
 		exit(1);
 	}
-	
-	
+
+
 	printf("Accounts with Zero Balance: \n");
 	char* token[3];
 	char SingleLine[155];
 	fgets(SingleLine, 155, file);
-    while (!feof(file)){
-        char *ptr = strtok(SingleLine, " \t");
-        int i = 0;
-        while (ptr != NULL){
-            token[i] = ptr;
-            ptr = strtok(NULL, "\t");
-            i++;
-        }
+	while (!feof(file)){
+		char *ptr = strtok(SingleLine, " \t");
+		int i = 0;
+		while (ptr != NULL){
+			token[i] = ptr;
+			ptr = strtok(NULL, "\t");
+			i++;
+		}
 		float Balance = atof(token[2]);
 		if (abs(Balance) < FLOAT_ERR){
-		    printf("%s: %s\n",token[0],token[1]);
+			printf("%s: %s\n", token[0], token[1]);
 		}
 		fgets(SingleLine, 155, file);
-	} 
-    
+	}
+
 	fclose(file);
 }
 
 void ClearDatabase(){
-    FILE* file = fopen(FILENAME,"w");
-    fclose(file);
+	FILE* file = fopen(FILENAME, "w");
+	fclose(file);
 }
